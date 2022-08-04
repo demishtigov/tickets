@@ -18,8 +18,24 @@ body {
 }
 
 .container {
-  max-width: 1024px;
-  margin: 0 auto;
-  color: #4a4a4a;
+  text-align: center;
+  width: 1024px;
+  background-color: #f3f7fa;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero {
+  display: flex;
+  flex-direction: row;
+  margin-top: 50px;
+  justify-content: center;
+}
+li {
+  list-style-type: none;
+}
+ul {
+  margin: 0;
+  padding: 0;
 }
 
