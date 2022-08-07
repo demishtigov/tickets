@@ -1,21 +1,47 @@
 import Filter from "./components/filter/Filter";
 import Header from "./components/header/Header";
 import data from "./tickets.json";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TicketsList from "./components/ticketsList/TicketsList";
 
 const App = () => {
-  const newData = data.tickets
-  
-  const [ticketsData, setTicketsData] = useState(newData);
-  console.log(ticketsData)
+  // const newData = data.tickets
+
+  const [stopsFilter, setStopsFilter] = useState('all');
+  const [ticketsData, setTicketsData] = useState([]);
+
+  useEffect(() => {
+    if (stopsFilter === "all") {
+      setTicketsData(data.tickets);
+    } else {
+      const filteredStops = data.tickets.filter(
+        (ticket) => ticket.stops == stopsFilter
+      );
+      setTicketsData(filteredStops);
+    }
+  }, [stopsFilter]);
+
+  const checkboxFiltersValue = {
+    all: "all",
+    zeroStops: "0",
+    oneStop: "1",
+    twoStops: "2",
+    threeStops: "3",
+  };
+
   return (
     <>
       <div className="contaier">
         <Header />
         <div className="hero">
           <aside>
-            <Filter tickets={ticketsData} setTickets={setTicketsData}   />
+            <Filter
+              tickets={ticketsData}
+              setTickets={setTicketsData}
+              stopsFilter={stopsFilter}
+              setStopsFilter={setStopsFilter}
+              checkboxFiltersValue={checkboxFiltersValue}
+            />
           </aside>
           <TicketsList tickets={ticketsData} />
         </div>
@@ -25,23 +51,3 @@ const App = () => {
 };
 
 export default App;
-
-// const sortFilters = (sort) => {
-//   console.log(sort);
-//   if()
-//   // switch (sort) {
-//   //   case "all":
-      
-//   //     break;
-//   //   case "1stop":
-//   //     const flightsOneStop = ticketsData.filter((item) => item.stop === 1);
-//   //     setTicketsData(flightsOneStop);
-//   //     break;
-//     //   case '1stop':
-//     //     const flightsOneStop = newData.filter((item) =>
-//     //       item.flight.legs.every((item) => item.segments.every((segment) => segment.starting)),
-//     //     );
-//     //     setFlights(flightsNoTransfer);
-//     //     break;
-//   }
-// };

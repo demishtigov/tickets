@@ -3,55 +3,10 @@ import { useState, useEffect } from "react";
 import "./filter.css";
 
 
-const Filter = ({ tickets, setTickets }) => {
+const Filter = ({ checkboxFiltersValue, tickets, setTickets, stopsFilter, setStopsFilter }) => {
   const [curr, setCurr] = useState("rub");
 
-  const [stops, setStops] = useState({
-    checkboxAll: false,
-    checkbox0: true,
-    checkbox1: true,
-    checkbox2: true,
-    checkbox3: true
-  })
-
-  const checkedFilter = e => {
-    const {value, name, checked} = e.target
-    
-    setStops({ [name]: checked });
-    if (checked) {
-      const filterData = tickets.filter(item => item.stops === value);
-      return filterData
-      
-      
-    } else {
-      const filterData = tickets.filter(item => item["stops"] !== +value);
-      
-      setTickets(tickets)
-      setStops({ checkboxAll: false });
-    }
-  };
-  const checkedAllTickets = e => {
-    const checked = e.target.checked;
-    
-
-    if (checked) {
-      setStops({
-        checkboxAll: true,
-        checkbox0: true,
-        checkbox1: true,
-        checkbox2: true,
-        checkbox3: true
-      });
-
-      // this.props.update({
-      //   tickets: data
-      // });
-    } else {
-      setStops({
-        checkboxAll: false
-      });
-    }
-  };
+  
 
   return (
     <>
@@ -86,10 +41,11 @@ const Filter = ({ tickets, setTickets }) => {
               <input
                 id="all"
                 type="checkbox"
-                checked={stops.checkboxAll}
                 name="checkboxAll"
-                value="all"
-                onChange={checkedAllTickets}
+                value={checkboxFiltersValue.all}
+                checked={stopsFilter == checkboxFiltersValue.all}
+                onClick={({target}) => setStopsFilter(target.value)}
+                
               />
               <label htmlFor="all">
                 <span />
@@ -100,10 +56,10 @@ const Filter = ({ tickets, setTickets }) => {
               <input
                 id="none"
                 type="checkbox"
-                checked={stops.checkbox0}
                 name="checkbox0"
-                value="0"
-                onChange={checkedFilter}
+                value={checkboxFiltersValue.zeroStops}
+                checked={stopsFilter == checkboxFiltersValue.zeroStops}
+                onClick={({target}) => setStopsFilter(target.value)}
               />
               <label htmlFor="none">
                 <span />
@@ -114,10 +70,10 @@ const Filter = ({ tickets, setTickets }) => {
               <input
                 id="one"
                 type="checkbox"
-                checked={stops.checkbox1}
                 name="checkbox1"
-                value="1"
-                onChange={checkedFilter}
+                value={checkboxFiltersValue.oneStop}
+                checked={stopsFilter == checkboxFiltersValue.oneStop}
+                onClick={({target}) => setStopsFilter(target.value)}
               />
               <label htmlFor="one">
                 <span />1 пересадка
@@ -127,10 +83,10 @@ const Filter = ({ tickets, setTickets }) => {
               <input
                 id="two"
                 type="checkbox"
-                checked={stops.checkbox2}
                 name="checkbox2"
-                value="2"
-                onChange={checkedFilter}
+                value={checkboxFiltersValue.twoStops}
+                checked={stopsFilter == checkboxFiltersValue.twoStops}
+                onClick={({target}) => setStopsFilter(target.value)}
               />
               <label htmlFor="two">
                 <span />2 пересадки
@@ -140,10 +96,10 @@ const Filter = ({ tickets, setTickets }) => {
               <input
                 id="three"
                 type="checkbox"
-                checked={stops.checkbox3}
                 name="checkbox3"
-                value="3"
-                onChange={checkedFilter}
+                value={checkboxFiltersValue.threeStops}
+                checked={stopsFilter == checkboxFiltersValue.threeStops}
+                onClick={({target}) => setStopsFilter(target.value)}
               />
               <label htmlFor="three">
                 <span />3 пересадки
