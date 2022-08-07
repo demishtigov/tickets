@@ -5,9 +5,7 @@ import { useState, useEffect } from "react";
 import TicketsList from "./components/ticketsList/TicketsList";
 
 const App = () => {
-  // const newData = data.tickets
-
-  const [stopsFilter, setStopsFilter] = useState('all');
+  const [stopsFilter, setStopsFilter] = useState("all");
   const [ticketsData, setTicketsData] = useState([]);
 
   useEffect(() => {

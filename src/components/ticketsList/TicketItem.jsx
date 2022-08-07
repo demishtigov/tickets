@@ -1,18 +1,18 @@
-import React from 'react'
-import './ticketItem.css'
-import turkishAir from '../../assets/turkish-air.png'
-import plane from '../../assets/plane.png'
+import React from "react";
+import "./ticketItem.css";
+import turkishAir from "../../assets/turkish-air.png";
+import plane from "../../assets/plane.png";
 
-
-const TicketItem = ({ticket}) => {
-  return <>
+const TicketItem = ({ ticket }) => {
+  return (
+    <>
       <div className="ticketStyle">
         <div className="ticketBuy">
           <div className="air-logo">
             <img src={turkishAir} alt="Turkish Airlines" />
           </div>
-          <button className="button" >
-            Купить <br /> за {ticket.price}
+          <button className="button">
+            Купить <br /> за {ticket.price} ₽ 
           </button>
         </div>
         <div className="ticketInfo">
@@ -45,10 +45,8 @@ const TicketItem = ({ticket}) => {
           </div>
         </div>
       </div>
-  </>
-    
-    
-  
-}
+    </>
+  );
+};
 
-export default TicketItem
+export default TicketItem;

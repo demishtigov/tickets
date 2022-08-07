@@ -4,16 +4,16 @@ import TicketItem from "./TicketItem";
 const TicketsList = ({ tickets }) => {
   return (
     <div>
-
-      <ul className='list'>
+      <ul className="list">
         {tickets.map((ticket) => {
-          return <li key={ticket.id}>
-            <TicketItem ticket={ticket} />
-          </li>
+          return (
+            <li key={ticket.id}>
+              <TicketItem ticket={ticket} />
+            </li>
+          );
         })}
       </ul>
     </div>
-    
   );
 };
 
